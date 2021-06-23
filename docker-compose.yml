@@ -1,12 +1,13 @@
 version: "3.8"
 
-# volumes:
-#   vol-emqx-data:
-#     name: foo-emqx-data
-#   vol-emqx-etc:
-#     name: foo-emqx-etc
-#   vol-emqx-log:
-#     name: foo-emqx-log
+volumes:
+  vol-emqx-data:
+    name: foo-emqx-data
+  vol-emqx-etc:
+    name: foo-emqx-etc
+  vol-emqx-log:
+    name: foo-emqx-log
+  mongodata: {}
 
 services:
   mongo:
@@ -18,33 +19,33 @@ services:
       MONGO_INITDB_ROOT_USERNAME: "devuser"
       MONGO_INITDB_ROOT_PASSWORD: "devpassword"
     volumes: #persistencia de datos 
-      - ./mongodata:/data/db
+      - mongodata:/data/db
     ports: 
       - 27017:27017
 
 
-  # emqx:
-  #   container_name: emqx
-  #   image: emqx/emqx:4.2.3
-  #   restart: always
-  #   ports: 
-  #     - 18083:18083
-  #     - 8083:8083
-  #   environment: 
+  emqx:
+    container_name: emqx
+    image: emqx/emqx:4.2.3
+    restart: always
+    ports: 
+      - 18083:18083
+      - 8083:8083
+    environment: 
 
-  #     EMQX_NAME: omarrc-com
-  #     EMQX_HOST: 127.0.0.1
+      EMQX_NAME: omarrc-com
+      EMQX_HOST: 127.0.0.1
 
-  #     TZ: "Mexico/General"
-  #     # DEFAULT DASH PAS
-  #     EMQX_DASHBOARD__DEFAULT__USER__PASSWORD: "emqxdashpass"
-  #     #listener.tcp.external.max_connections
-  #     EMQX_LISTENER__TCP__EXTERNAL__MAX_CONNECTIONS: 1000
+      TZ: "Mexico/General"
+      # DEFAULT DASH PAS
+      EMQX_DASHBOARD__DEFAULT__USER__PASSWORD: "emqxdashpass"
+      #listener.tcp.external.max_connections
+      EMQX_LISTENER__TCP__EXTERNAL__MAX_CONNECTIONS: 1000
 
-  #   volumes:
-  #     - vol-emqx-data:/opt/emqx/data
-  #     - vol-emqx-etc:/opt/emqx/etc
-  #     - vol-emqx-log:/opt/emqx/log
+    volumes:
+      - vol-emqx-data:/opt/emqx/data
+      - vol-emqx-etc:/opt/emqx/etc
+      - vol-emqx-log:/opt/emqx/log
     
 
 
