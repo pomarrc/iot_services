@@ -19,7 +19,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: "devuser"
       MONGO_INITDB_ROOT_PASSWORD: "devpassword"
     volumes: #persistencia de datos 
-      - mongodata:/data/db
+      - mongodata:/data/db #./mongodata:data/db no funciona en windows para comprartir archivos
     ports: 
       - 27017:27017
 
