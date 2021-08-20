@@ -52,12 +52,11 @@ services:
       - 8883:8883
       - 8083:8083
       - 8085:8081
-      - 8084:8084
 
     volumes:
       - vol-emqx-data:/opt/emqx/data
       - vol-emqx-log:/opt/emqx/log
-      - ./certs:/opt/emqx/etc/certs
+
     links:
       - mongo
 
@@ -111,11 +110,3 @@ services:
 
       EMQX_LOADED_PLUGINS: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard,emqx_auth_mongo"
       EMQX_LISTENER__TCP__EXTERNAL__MAX_CONNECTIONS: 1000
-      EMQX_LISTENER__SSL__EXTERNAL__KEYFILE: "etc/certs/emqx.key"
-      EMQX_LISTENER__SSL__EXTERNAL__CERTFILE: "etc/certs/emqx.crt"
-      #EMQX_LISTENER__SSL__EXTERNAL__CACERTFILE: "etc/certs/ca.pem"
-      
-      #wss
-      #EMQX_LISTENER__WSS__EXTERNAL__CACERTFILE: "etc/certs/ca.pem" 
-      EMQX_LISTENER__WSS__EXTERNAL__CERTFILE: "etc/certs/emqx.pem"
-      EMQX_LISTENER__WSS__EXTERNAL__KEYFILE: "etc/certs/emqx.key"
