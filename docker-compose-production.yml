@@ -111,11 +111,21 @@ services:
 
       EMQX_LOADED_PLUGINS: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard,emqx_auth_mongo"
       EMQX_LISTENER__TCP__EXTERNAL__MAX_CONNECTIONS: 1000
+      #SSL/TLS
       EMQX_LISTENER__SSL__EXTERNAL__KEYFILE: "etc/certs/emqx.key"
       EMQX_LISTENER__SSL__EXTERNAL__CERTFILE: "etc/certs/emqx.pem"
       EMQX_LISTENER__SSL__EXTERNAL__CACERTFILE: "etc/certs/ca.pem"
-      
-      #wss
+      #verify_peer/verify_none
+      EMQX_LISTENER__SSL__EXTERNAL__VERIFY: "verify_peer"
+      #listener.ssl.external.tls_versions = tlsv1.2
+      EMQX_LISTENER__SSL__EXTERNAL_VERSIONS: "tlsv1.2"
+      #listener.ssl.external.fail_if_no_peer_cert = false/true
+      EMQX_LISTENER__SSL__EXTERNAL__FAIL_IF_NO_PEER_CERT: "false"
+
+      #WSS
       EMQX_LISTENER__WSS__EXTERNAL__CACERTFILE: "etc/certs/ca.pem" 
       EMQX_LISTENER__WSS__EXTERNAL__CERTFILE: "etc/certs/emqx.pem"
       EMQX_LISTENER__WSS__EXTERNAL__KEYFILE: "etc/certs/emqx.key"
+      
+      
+
