@@ -14,6 +14,7 @@ services:
     working_dir: /home/node/app
     volumes:
       - ./app/:/home/node/app
+      - ./certs:/home/node/app/certs
 
     ports:
       - ${FRONT_PORT_O}:${FRONT_PORT_I}
@@ -113,8 +114,8 @@ services:
       EMQX_LOADED_PLUGINS: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard,emqx_auth_mongo"
       EMQX_LISTENER__TCP__EXTERNAL__MAX_CONNECTIONS: 1000
       #SSL/TLS
-      EMQX_LISTENER__SSL__EXTERNAL__KEYFILE: "etc/certs/emqx.key"
-      EMQX_LISTENER__SSL__EXTERNAL__CERTFILE: "etc/certs/emqx.pem"
+      EMQX_LISTENER__SSL__EXTERNAL__KEYFILE: "etc/certs/key.key"
+      EMQX_LISTENER__SSL__EXTERNAL__CERTFILE: "etc/certs/cert.pem"
       EMQX_LISTENER__SSL__EXTERNAL__CACERTFILE: "etc/certs/ca.pem"
       #verify_peer/verify_none
       EMQX_LISTENER__SSL__EXTERNAL__VERIFY: "verify_peer"
@@ -125,8 +126,8 @@ services:
 
       #WSS
       EMQX_LISTENER__WSS__EXTERNAL__CACERTFILE: "etc/certs/ca.pem" 
-      EMQX_LISTENER__WSS__EXTERNAL__CERTFILE: "etc/certs/emqx.pem"
-      EMQX_LISTENER__WSS__EXTERNAL__KEYFILE: "etc/certs/emqx.key"
+      EMQX_LISTENER__WSS__EXTERNAL__CERTFILE: "etc/certs/cert.pem"
+      EMQX_LISTENER__WSS__EXTERNAL__KEYFILE: "etc/certs/key.key"
       
       
 
